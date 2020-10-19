@@ -1,0 +1,20 @@
+main {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap: 0px;
+    justify-content: center;
+    padding: 10px;
+}
+  
+app-casella {
+    border: 1px gray solid;
+    height: 100px;
+}
+button.noujoc{
+    width: 30%;
+}
+.noujoc2{
+    text-align: center;
+    
+}
+
