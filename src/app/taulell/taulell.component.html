@@ -10,6 +10,10 @@
     <h2>El Jugador {{ winner }} ha guanyat!</h2>
     <button class="noujoc" nbButton outline status="danger" (click)="newGame()">Nova partida</button>
 </div>
+<div *ngIf="empat" class="noujoc2">
+    <h2>Empat!</h2>
+    <button class="noujoc" nbButton outline status="danger" (click)="newGame()">Nova partida</button>
+</div>
 
 <!-- <div *ngIf="empat" class="noujoc2">
     <h2>Empat!</h2>

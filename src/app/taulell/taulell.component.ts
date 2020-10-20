@@ -10,6 +10,7 @@ export class TaulellComponent implements OnInit {
   squares: string[];
   xIsNext: boolean;
   winner: string;
+  empat: boolean;
 
   constructor() { }
 
@@ -20,6 +21,7 @@ export class TaulellComponent implements OnInit {
     this.squares = Array(9).fill(null);
     this.winner = null;
     this.xIsNext = true;
+    this.empat = false;
   }
 
   get player() {
@@ -33,14 +35,17 @@ export class TaulellComponent implements OnInit {
     }
 
     this.winner = this.calculateWinner();
-    if (this.winner != null){
+    console.log(this.squares);
+    if (this.winner != null) {
       
     }
-   /*  if (
-      this.squares.every(random); 
-    ){
-      console.log("full");
-    } */
+    if (this.squares.every(this.calculaempat)) {
+      this.empat = true;
+    }
+  }
+
+  calculaempat(val) {
+    return (val === 'X' || val === 'O');
   }
 
   calculateWinner() {
