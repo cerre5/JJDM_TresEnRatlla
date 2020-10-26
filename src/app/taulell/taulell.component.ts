@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { CasellaComponent } from '../casella/casella.component';
 
 @Component({
   selector: 'app-taulell',
@@ -11,6 +13,7 @@ export class TaulellComponent implements OnInit {
   xIsNext: boolean;
   winner: string;
   empat: boolean;
+  desabilitarboto: boolean = true;
 
   constructor() { }
 
@@ -33,14 +36,36 @@ export class TaulellComponent implements OnInit {
       this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
     }
-
+    if (this.squares.every(this.calculaempat)) {
+      this.empat = true;
+    }
     this.winner = this.calculateWinner();
+    setTimeout(() => this.enemyMove(), 100);
     console.log(this.squares);
-    if (this.winner != null) {
-      
+  }
+
+  enemyMove() {
+    var random = Math.floor(Math.random() * 9);
+    while (this.squares[random] !== null) {
+      random = Math.floor(Math.random() * 9);
     }
     if (this.squares.every(this.calculaempat)) {
       this.empat = true;
+    }
+    if (this.winner != null) {
+      return null;
+    }
+    else {
+      this.squares.splice(random, 1, this.player);
+      this.xIsNext = !this.xIsNext;
+      this.winner = this.calculateWinner();
+    }
+
+  }
+
+  disableTaulell() {
+    if (this.winner != null || this.squares.every(this.calculaempat)) {
+      return true;
     }
   }
 
