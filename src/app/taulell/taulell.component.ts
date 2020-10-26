@@ -36,21 +36,20 @@ export class TaulellComponent implements OnInit {
       this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
     }
-    if (this.squares.every(this.calculaempat)) {
+    this.winner = this.calculateWinner();
+    if (this.squares.every(this.calculaempat) && this.winner == null) {
       this.empat = true;
     }
-    this.winner = this.calculateWinner();
-    setTimeout(() => this.enemyMove(), 100);
-    console.log(this.squares);
+    if (!this.squares.every(this.calculaempat)) {
+      setTimeout(() => this.enemyMove(), 100);
+      console.log(this.squares);
+    }
   }
 
   enemyMove() {
     var random = Math.floor(Math.random() * 9);
     while (this.squares[random] !== null) {
       random = Math.floor(Math.random() * 9);
-    }
-    if (this.squares.every(this.calculaempat)) {
-      this.empat = true;
     }
     if (this.winner != null) {
       return null;
