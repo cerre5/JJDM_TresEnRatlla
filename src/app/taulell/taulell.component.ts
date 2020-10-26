@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { CasellaComponent } from '../casella/casella.component';
 
 @Component({
   selector: 'app-taulell',
@@ -10,6 +12,8 @@ export class TaulellComponent implements OnInit {
   squares: string[];
   xIsNext: boolean;
   winner: string;
+  empat: boolean;
+  desabilitarboto: boolean = true;
 
   constructor() { }
 
@@ -20,6 +24,7 @@ export class TaulellComponent implements OnInit {
     this.squares = Array(9).fill(null);
     this.winner = null;
     this.xIsNext = true;
+    this.empat = false;
   }
 
   get player() {
@@ -31,16 +36,40 @@ export class TaulellComponent implements OnInit {
       this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
     }
-
     this.winner = this.calculateWinner();
-    if (this.winner != null){
-      
+    if (this.squares.every(this.calculaempat) && this.winner == null) {
+      this.empat = true;
     }
-   /*  if (
-      this.squares.every(random); 
-    ){
-      console.log("full");
-    } */
+    if (!this.squares.every(this.calculaempat)) {
+      setTimeout(() => this.enemyMove(), 100);
+      console.log(this.squares);
+    }
+  }
+
+  enemyMove() {
+    var random = Math.floor(Math.random() * 9);
+    while (this.squares[random] !== null) {
+      random = Math.floor(Math.random() * 9);
+    }
+    if (this.winner != null) {
+      return null;
+    }
+    else {
+      this.squares.splice(random, 1, this.player);
+      this.xIsNext = !this.xIsNext;
+      this.winner = this.calculateWinner();
+    }
+
+  }
+
+  disableTaulell() {
+    if (this.winner != null || this.squares.every(this.calculaempat)) {
+      return true;
+    }
+  }
+
+  calculaempat(val) {
+    return (val === 'X' || val === 'O');
   }
 
   calculateWinner() {
