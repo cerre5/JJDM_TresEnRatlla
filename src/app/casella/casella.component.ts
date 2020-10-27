@@ -5,11 +5,11 @@ import { Component, Input } from '@angular/core';
   selector: 'app-casella',
   template: `
   <button [disabled]="buttonDisabled" nbButton *ngIf="!value">{{ value }}</button>
-  <button [disabled]="buttonDisabled" *ngIf="value == 'X'">{{ value }}</button>
-  <button [disabled]="buttonDisabled" *ngIf="value == 'O'">{{ value }}</button>
+  <button [disabled]="buttonDisabled || value" *ngIf="value">{{ value }}</button>
+  
   `,
   styles: [
-    'button { width: 100%; height: 100%; font-size: 5em !important; }'
+    'button { width: 100%; height: 100%; font-size: 5em !important; } button:disabled { background: white; color: black; border: none; }'
   ]
 })
 export class CasellaComponent {
