@@ -15,7 +15,7 @@
     "@angular/cdk": "^9.0.0",
     "@angular/common": "~9.1.0",
     "@angular/compiler": "~9.1.0",
-    "@angular/core": "~9.1.0",
+    "@angular/core": "^9.1.12",
     "@angular/forms": "~9.1.0",
     "@angular/platform-browser": "~9.1.0",
     "@angular/platform-browser-dynamic": "~9.1.0",
@@ -23,6 +23,7 @@
     "@nebular/eva-icons": "5.1.0",
     "@nebular/theme": "^5.1.0",
     "eva-icons": "^1.1.2",
+    "firebase": "^7.2.3",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

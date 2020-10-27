@@ -1,19 +1,11 @@
-<h1>Jugador Actual: {{ player }} </h1>
+firebase.initializeApp({
+  apiKey: '### FIREBASE API KEY ###',
+  authDomain: '### FIREBASE AUTH DOMAIN ###',
+  projectId: '### CLOUD FIRESTORE PROJECT ID ###'
+});
 
-<main>
-    <app-casella *ngFor="let val of squares; let i = index" [value]="val" (click)="makeMove(i)">
-    </app-casella>
-</main>
+var db = firebase.firestore();
 
-
-<div *ngIf="winner" class="noujoc2">
-    <h2>El Jugador {{ winner }} ha guanyat! </h2>
-    <p>usuario</p>
-    <input type="textfield" id="usuario"/>
-    <button  id="saveButton">SAVE</button><br>
-    <button class="noujoc" nbButton outline status="danger" (click)="newGame()">Nova partida</button>
-</div>
-<script>
 var config ={
   apiKey: "AIzaSyBaNjusUJANROx2LGbZYtatLBWxoMW9c8A",
   authDomain: "rbdd-8cd28.firebaseapp.com",
@@ -29,7 +21,8 @@ firebase.initializeApp(config);
 var firestore = firebase.firestore();
 
 const usuario = document.querySelector("#usuario");
-const inputTextField = 1;
+const outputHeader = document.querySelector("#title");
+const inputTextField = document.querySelector("#puntos");
 const saveButton = document.querySelector("#saveButton");
 
 const userCollection = firestore.collection('users');
@@ -48,8 +41,3 @@ saveButton.addEventListener('click', e=>{
     console.error(error)});
 
 });
-</script>
-<!-- <div *ngIf="empat" class="noujoc2">
-    <h2>Empat!</h2>
-    <button class="noujoc" nbButton outline status="danger" (click)="newGame()">Nova partida</button>
-</div> -->

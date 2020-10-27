@@ -11,7 +11,10 @@ export class TaulellComponent implements OnInit {
   xIsNext: boolean;
   winner: string;
 
-  constructor() { }
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
     this.newGame();
@@ -34,10 +37,10 @@ export class TaulellComponent implements OnInit {
 
     this.winner = this.calculateWinner();
     if (this.winner != null){
-      
+
     }
    /*  if (
-      this.squares.every(random); 
+      this.squares.every(random);
     ){
       console.log("full");
     } */
